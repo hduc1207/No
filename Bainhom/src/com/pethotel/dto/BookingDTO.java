@@ -1,37 +1,53 @@
 package com.pethotel.dto;
 
-import java.sql.Timestamp;
+import java.sql.Timestamp; // Dùng Timestamp để lưu cả ngày và giờ
 
 public class BookingDTO {
-
+    // Các trường gốc (Lưu trong Database)
     private int bookingId;
     private int customerId;
     private int petId;
     private int cageId;
     private Timestamp checkInDate;
     private Timestamp checkOutDate;
-    private String status;          // Pending, Active, Completed, Cancelled
-    private String paymentStatus;   // Paid, Unpaid
+    private String status;
+    private String paymentStatus;
     private double totalPrice;
-    private Timestamp createdDate;
 
-    public BookingDTO() {
-    }
+    // --- CÁC TRƯỜNG MỚI (Chỉ để hiển thị tên cho đẹp) ---
+    private String petName;  // Thêm cái này
+    private String cageName; // Thêm cái này
 
-    public BookingDTO(int bookingId, int customerId, int petId, int cageId,
-                      Timestamp checkInDate, Timestamp checkOutDate,
-                      String status, String paymentStatus,
-                      double totalPrice, Timestamp createdDate) {
+    public BookingDTO() {}
+
+    // Constructor đầy đủ (Cập nhật thêm name)
+    public BookingDTO(int bookingId, int customerId, int petId, String petName, int cageId, String cageName, Timestamp checkInDate, Timestamp checkOutDate, String status, String paymentStatus, double totalPrice) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.petId = petId;
+        this.petName = petName;     // Gán
         this.cageId = cageId;
+        this.cageName = cageName;   // Gán
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
         this.status = status;
         this.paymentStatus = paymentStatus;
         this.totalPrice = totalPrice;
-        this.createdDate = createdDate;
+    }
+
+
+    public String getPetName() {
+        return petName;
+    }
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
+    public String getCageName() {
+        return cageName;
+    }
+    public void setCageName(String cageName) {
+        this.cageName = cageName;
     }
 
     public int getBookingId() {
@@ -104,13 +120,5 @@ public class BookingDTO {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public Timestamp getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Timestamp createdDate) {
-        this.createdDate = createdDate;
     }
 }
