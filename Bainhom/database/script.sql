@@ -4,7 +4,7 @@ GO
 USE PetHotelDB;
 GO
 
--- 2. Xóa bảng cũ nếu tồn tại (Để chạy lại script không bị lỗi)
+-- 2. Xóa bảng cũ nếu tồn tại
 DROP TABLE IF EXISTS BookingServices;
 DROP TABLE IF EXISTS Bookings;
 DROP TABLE IF EXISTS Services;
@@ -18,9 +18,9 @@ GO
 CREATE TABLE Users (
                        UserID INT IDENTITY(1,1) PRIMARY KEY,
                        Username VARCHAR(50) NOT NULL UNIQUE,
-                       Password VARCHAR(100) NOT NULL, -- Lưu ý: Code Java nhớ mã hóa MD5/Bcrypt nhé
+                       Password VARCHAR(100) NOT NULL,
                        FullName NVARCHAR(100),
-                       Role NVARCHAR(20) DEFAULT 'Staff' -- 'Admin' hoặc 'Staff'
+                       Role NVARCHAR(20) DEFAULT 'Staff'
 );
 
 -- 4. Tạo bảng Customers (Khách hàng)
@@ -37,31 +37,31 @@ CREATE TABLE Customers (
 CREATE TABLE Pets (
                       PetID INT IDENTITY(1,1) PRIMARY KEY,
                       PetName NVARCHAR(100) NOT NULL,
-                      Type NVARCHAR(50), -- Chó, Mèo, Hamster...
-                      Breed NVARCHAR(100), -- Giống (Poodle, Golden...)
+                      Type NVARCHAR(50),
+                      Breed NVARCHAR(100),
                       Weight FLOAT,
-                      HealthStatus NVARCHAR(MAX), -- Tình trạng sức khỏe
+                      HealthStatus NVARCHAR(MAX),
                       CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID) ON DELETE CASCADE
 );
 
 -- 6. Tạo bảng Cages (Chuồng/Phòng)
 CREATE TABLE Cages (
                        CageID INT IDENTITY(1,1) PRIMARY KEY,
-                       CageName NVARCHAR(50) NOT NULL, -- Ví dụ: Chuồng A1, VIP 02
-                       Type NVARCHAR(50), -- VIP, Thường
-                       PricePerDay DECIMAL(18,0) NOT NULL, -- Giá tiền/ngày
-                       Status NVARCHAR(20) DEFAULT 'Trong' -- 'Trong', 'Dang_O', 'Bao_Tri'
+                       CageName NVARCHAR(50) NOT NULL,
+                       Type NVARCHAR(50),
+                       PricePerDay DECIMAL(18,2) NOT NULL,
+                       Status NVARCHAR(20) DEFAULT 'Trong'
 );
 
 -- 7. Tạo bảng Services (Dịch vụ thêm)
 CREATE TABLE Services (
                           ServiceID INT IDENTITY(1,1) PRIMARY KEY,
                           ServiceName NVARCHAR(100) NOT NULL,
-                          Price DECIMAL(18,0) NOT NULL,
-                          Unit NVARCHAR(20) -- Lần, Giờ, Kg
+                          Price DECIMAL(18,2) NOT NULL,
+                          Unit NVARCHAR(20)
 );
 
--- 8. Tạo bảng Bookings (Đơn đặt phòng - Main Transaction)
+-- 8. Tạo bảng Bookings (Đơn đặt phòng)
 CREATE TABLE Bookings (
                           BookingID INT IDENTITY(1,1) PRIMARY KEY,
                           CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
@@ -69,11 +69,11 @@ CREATE TABLE Bookings (
                           CageID INT FOREIGN KEY REFERENCES Cages(CageID),
 
                           CheckInDate DATETIME NOT NULL,
-                          CheckOutDate DATETIME, -- Có thể NULL nếu chưa chốt ngày về
+                          CheckOutDate DATETIME,
 
-                          Status NVARCHAR(20) DEFAULT 'Pending', -- Pending, Active, Completed, Cancelled
-                          PaymentStatus NVARCHAR(20) DEFAULT 'Unpaid', -- Unpaid, Paid
-                          TotalPrice DECIMAL(18,0) DEFAULT 0,
+                          Status NVARCHAR(20) DEFAULT 'Pending',
+                          PaymentStatus NVARCHAR(20) DEFAULT 'Unpaid',
+                          TotalPrice DECIMAL(18,2) DEFAULT 0,
                           CreatedDate DATETIME DEFAULT GETDATE()
 );
 
@@ -83,6 +83,6 @@ CREATE TABLE BookingServices (
                                  BookingID INT FOREIGN KEY REFERENCES Bookings(BookingID) ON DELETE CASCADE,
                                  ServiceID INT FOREIGN KEY REFERENCES Services(ServiceID),
                                  Quantity INT DEFAULT 1,
-                                 PriceAtBooking DECIMAL(18,0) -- Lưu giá tại thời điểm đặt (tránh sau này tăng giá làm sai lệch doanh thu cũ)
+                                 PriceAtBooking DECIMAL(18,2)
 );
 GO
