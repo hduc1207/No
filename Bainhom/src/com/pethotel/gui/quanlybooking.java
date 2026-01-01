@@ -3,21 +3,23 @@ package com.pethotel.gui;
 import javax.swing.*;
 
 public class quanlybooking {
-    private JButton quảnLýThúCưngButton;
+    private JButton btnMenuPet;
     private JButton quảnLýChuồngButton;
-    private JButton dịchVụButton;
-    private JButton quảnLýĐặtLịchButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JComboBox comboBox1;
-    private JTextField textField7;
+    private JButton btnMenuService;
+    private JButton btnMenuBooking;
+    private JComboBox cboUserID;
+    private JComboBox cboPetID;
+    private JComboBox cboCageID;
+    private JTextField txtCheckinDate;
+    private JTextField txtCheckOutDate;
+    private JTextArea TotalPrice;
+    private JComboBox cboStatus;
+    private JComboBox cboServiceID;
     private JButton thêmButton;
     private JButton xóaButton;
     private JButton sửaButton;
     private JTable table1;
-    private JButton quảnLýNhânViênButton;
+    private JButton btnAccount;
+    private JButton btnExit;
+    private JPanel MainPanel;
 }

@@ -3,19 +3,17 @@ package com.pethotel.gui;
 import javax.swing.*;
 
 public class dichvu {
-    private JButton quảnLýThúCưngButton;
-    private JButton quảnLýChuồngButton;
-    private JButton dịchVụButton;
-    private JButton quảnLýĐặtLịchButton;
-    private JTextField textField1;
-    private JTextField textField3;
-    private JSpinner spinner1;
-    private JButton thêmButton;
-    private JButton sửaButton;
-    private JButton xóaButton;
-    private JTable table1;
-    private JTextField textField2;
-    private JButton quảnLýNhânViênButton;
-    private JButton tàiKhoảnButton;
-    private JButton thoátButton;
+    private JButton btnMenuPet;
+    private JButton btnMenuCage;
+    private JButton btnMenuService;
+    private JButton btnMenuBooking;
+    private JTextField txtPrice;
+    private JTextField txtServiceID;
+    private JButton btnAdd;
+    private JButton btnEdit;
+    private JButton btnDelete;
+    private JTable tblService;
+    private JTextField txtServiceName;
+    private JButton btnAccount;
+    private JButton btnExit;
 }

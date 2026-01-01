@@ -3,19 +3,23 @@ package com.pethotel.gui;
 import javax.swing.*;
 
 public class Taikhoanuser {
-    private JButton quảnLýThúCưngButton;
-    private JButton quảnLýChuồngButton;
-    private JButton dịchVụButton;
-    private JButton quảnLýĐặtLịchButton;
-    private JButton quảnLýNhânViênButton;
-    private JButton tàiKhoảnButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JComboBox comboBox1;
-    private JTextField textField3;
-    private JButton thêmButton;
-    private JButton xóaButton;
-    private JButton sửaButton;
-    private JTable table1;
-    private JButton thoátButton;
+    private JButton btnMenuPet;
+    private JButton btnMenuCage;
+    private JButton btnMenuService;
+    private JButton btnBooking;
+    private JButton btnAccount;
+    private JTextField txtUserName;
+    private JTextField txtPassword;
+    private JComboBox cboRole;
+    private JTextField txtPhoneNumber;
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnEdit;
+    private JTable tblAccount;
+    private JButton btnExit;
+    private JPanel MainPanel;
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
